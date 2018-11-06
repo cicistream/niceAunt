@@ -1,0 +1,40 @@
+{
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "language": "html",
+      "autoFix": true
+    }
+  ],
+  "eslint.options": {
+    "baseConfig": {
+      "extends": [
+        "eslint:standared",
+        "eslint-config-google",
+      ],
+      "rules": {
+        "switch-colon-spacing": false,
+        "require-jsdoc": false, // 禁用 jsdoc 规则
+        "max-len": false, // 禁用每行字数限制规则
+        "no-console": false, // 允许打 console.log
+        "no-debugger": false, // 允许使用
+        "padded-blocks": false,
+        "vue/no-parsing-error": [
+          2,
+          {
+            "x-invalid-end-tag": false,
+          },
+        ],
+        "no-trailing-spaces": false,
+      },
+    },
+    "useEslintrc": false,
+  },
+  "editor.formatOnSave": true,
+}

@@ -1,13 +1,29 @@
 {
   "pages": [
     "pages/index/main",
-    "pages/logs/main",
-    "pages/counter/main"
+    "pages/order/main",
+    "pages/mime/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/main",
+        "text": "找阿姨"
+      },
+      {
+        "pagePath": "pages/order/main",
+        "text": "找订单"
+      },
+      {
+        "pagePath": "pages/mime/main",
+        "text": "我的"
+      }
+    ]
   }
 }
