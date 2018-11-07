@@ -2,6 +2,6 @@
   "navigationBarTitleText": "查看启动日志",
   "navigationBarBackgroundColor": "#000",
   "usingComponents": {
-    "i-card": "../../../iview/card/index"
+    "i-card": "../../../static/dist/card/index"
   }
 }

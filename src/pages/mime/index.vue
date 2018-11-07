@@ -5,7 +5,7 @@
       <button @click="increment">+</button>
       <button @click="decrement">-</button>
     </p>
-    <i-card></i-card>
+    <i-card>ce</i-card>
     <a href="/pages/index/main" class="home">去往首页</a>
   </div>
 </template>
