@@ -1,31 +1,201 @@
 <template>
-  <div class="container" @click="clickHandle('test click', $event)">
-
+  <div class="container">
+    <swiper :indicator-dots="indicatorDots"
+      :autoplay="autoplay">
+        <swiper-item v-for="(item, index) in imgUrls" :key="index">
+          <image :src="item" class="slide-image" mode="scaleToFill"/>
+        </swiper-item>
+    </swiper>
+    <i-notice-bar icon="systemprompt" i-class="noticeBar">
+      2018年世界杯,将于6月14日至7月15日举行
+    </i-notice-bar>
+    <div class="auntList">
+      <view class="searchAunt">
+        <view>
+            <view style="width: 24%" class="searchItem" @click="searchChange(0)">
+              阿姨类型
+              <i-icon color="#2d8cf0" :type="showList[0] ? 'unfold' : 'packup'"></i-icon>
+            </view>
+            <span style="color:#2d8cf0">|</span>
+            <view style="width: 24%" class="searchItem" @click="searchChange(1)">
+              年龄区间
+              <i-icon color="#2d8cf0" :type="showList[1] ? 'unfold' : 'packup'"></i-icon>
+            </view>
+            <span style="color:#2d8cf0">|</span>
+            <view style="width: 24%" class="searchItem" @click="searchChange(2)">
+              工作经验
+              <i-icon color="#2d8cf0" :type="showList[2] ? 'unfold' : 'packup'"></i-icon>
+            </view>
+            <span style="color:#2d8cf0">|</span>
+            <view style="width: 24%" class="searchItem" @click="searchChange(3)">
+              更多筛选
+              <i-icon type="more"></i-icon>
+            </view>
+        </view>
+        <view class="auntKind"
+        :class="{ showSelect: showModal }">
+            <span
+                class="tag active-tag"
+                style="margin-right:5px;">
+                全部
+            </span>
+            <span
+                class="tag"
+                v-for="(tag, num) in selectList"
+                :key="num"
+                style="margin-right:5px;">
+                {{tag}}
+            </span>
+        </view>
+      </view>
+      <view class="auntResult">
+          <div class="auntItem" v-for="(item, index) in auntList" :key="index" @click="toDetail">
+            <i-row class="row">
+              <i-col span="5" i-class="aunt-avatar">
+                <image style="width: 100%;height: 180rpx;margin-right: 20rpx" :src="item.avatar"/>
+              </i-col>
+              <i-col span="18" i-class="col-class" offset="1">
+                <view class="flex-wrp" style="flex-direction:column;">
+                  <view style="line-height:60rpx;">
+                    {{item.name}}
+                    <i-tag 
+                        style="margin-left:20rpx"
+                        class="i-tags"
+                        color="yellow">
+                        {{auntKind[item.kind]}}
+                    </i-tag>
+                  </view>
+                  <view style="line-height:60rpx">
+                    <span style="margin-right:10rpx;border-right:1px solid #ccc;">
+                      {{item.age}}岁
+                    </span>
+                    <span style="margin-right:10rpx;border-right:1px solid #ccc;">
+                      {{item.education}}
+                    </span>
+                    <span style="margin-right:10rpx;border-right:1px solid #ccc;">
+                      {{item.province}}
+                    </span>
+                    <span>
+                      {{item.experience}}年
+                    </span>
+                    <!-- <i-rate 
+                        style="font-size:12px;margin: 0 10rpx;"
+                        disabled=true
+                        :value="item.rate">
+                        {{item.rate}}星
+                    </i-rate> -->
+                    <p style="display:inline-block;position:absolute;right:20rpx;">
+                      ￥<span style="color:#f90">
+                        {{item.price}}
+                      </span>元 / 月
+                    </p>
+                  </view>
+                  <view style="line-height:60rpx">
+                    <i-tag 
+                        class="i-tags"
+                        v-for="(tag, num) in item.tags" 
+                        :key="num"
+                        color="blue"
+                        type="border"
+                        style="margin-right:5px;">
+                        {{tag}}
+                    </i-tag>
+                  </view>
+                </view>
+              </i-col>
+              <view class="auntBtn">
+                <button @click="handleClick" type="ghost">联系阿姨</button>
+              </view>
+            </i-row>
+          </div>
+      </view>
+    </div>
     <div class="userinfo" @click="bindViewTap">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
       <div class="userinfo-nickname">
         <card :text="userInfo.nickName"></card>
       </div>
     </div>
-
     <div class="usermotto">
       <div class="user-motto">
         <card :text="motto"></card>
       </div>
     </div>
- 
     <a href="/pages/mime/main" class="counter">去往Vuex示例页面</a>
   </div>
 </template>
 
 <script>
 import card from "@/components/card";
+import Fly from "flyio/dist/npm/wx";
 
 export default {
   data() {
     return {
       motto: "Hello World",
-      userInfo: {}
+      userInfo: {},
+      showModal: true,
+      imgUrls: [
+        "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
+        "http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg",
+        "http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg"
+      ],
+      indicatorDots: true,
+      autoplay: true,
+      interval: 5000,
+      duration: 1000,
+      location: "",
+      auntKind: {
+        1: "月嫂",
+        2: "育儿嫂",
+        3: "钟点工"
+      },
+      showList: [
+        {
+          kind: "auntKind"
+        }
+      ],
+      auntList: [
+        {
+          name: "张阿姨",
+          age: 49,
+          rate: 4,
+          kind: 1,
+          avatar:
+            "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
+          province: "江西人",
+          education: "高中",
+          price: 6000,
+          experience: 12,
+          tags: ["洗衣服", "打扫卫生", "做饭"]
+        },
+        {
+          name: "张阿姨",
+          age: 49,
+          rate: 4,
+          kind: 2,
+          avatar:
+            "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
+          province: "江西人",
+          education: "高中",
+          price: 6000,
+          experience: 12,
+          tags: ["洗衣服", "打扫卫生", "做饭"]
+        },
+        {
+          name: "张阿姨",
+          age: 49,
+          kind: 3,
+          rate: 4.5,
+          education: "高中",
+          avatar:
+            "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
+          province: "江西人",
+          price: 6000,
+          experience: 12,
+          tags: ["洗衣服", "打扫卫生", "做饭"]
+        }
+      ]
     };
   },
 
@@ -52,17 +222,47 @@ export default {
     },
     clickHandle(msg, ev) {
       console.log("clickHandle:", msg, ev);
-    }
+    },
+    searchChange(val) {
+      this.showModal = !this.showModal;
+      this.showList[val] = !this.showList[val];
+      switch (val) {
+        case 0:
+          this.selectList = this.auntKind;
+          break;
+        case 1:
+          this.selectList = this.auntKind;
+          break;
+        case 2:
+          this.selectList = this.auntKind;
+          break;
+        default:
+          break;
+      }
+    },
+    toDetail() {}
   },
 
   created() {
     // 调用应用实例的方法获取全局数据
     this.getUserInfo();
+    this.location = wx.getLocation({
+      type: "wgs84",
+      success(res) {
+        const latitude = res.latitude;
+        const longitude = res.longitude;
+        const speed = res.speed;
+        const accuracy = res.accuracy;
+      }
+    });
   }
 };
 </script>
 
 <style scoped>
+* {
+  font-size: 12px !important;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -95,7 +295,92 @@ export default {
   display: inline-block;
   margin: 10px auto;
   padding: 5px 10px;
-  color: blue;
-  border: 1px solid blue;
+  color: #2d8cf0;
+  border: 1px solid 2d8cf0;
+}
+.slide-image {
+  width: 100%;
+  height: 100%;
+}
+.noticeBar.i-noticebar {
+  font-size: 12px;
+}
+.searchAunt /deep/ .searchItem {
+  line-height: 70rpx;
+  text-align: center;
+  display: inline-block;
+}
+.auntResult {
+  padding: 10rpx;
+}
+.auntItem {
+  position: relative;
+}
+.auntResult /deep/ .auntItem {
+  padding: 10rpx;
+  height: 200rpx;
+  margin-bottom: 10rpx;
+  border-bottom: 1px solid #f8f8f8;
+  display: block;
+  overflow: hidden;
+}
+.auntItem /deep/ .aunt-avatar {
+  height: 180rpx;
+  overflow: hidden;
+}
+.auntBtn {
+  position: absolute;
+  top: 10rpx;
+  right: 20rpx;
+}
+.auntBtn /deep/ ._button {
+  font-size: 12px !important;
+  height: 30px;
+  line-height: 30px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  color: #2d8cf0;
+  background-color: #fff !important;
+  touch-action: manipulation;
+}
+.auntBtn .button-hover {
+  box-shadow: inset 0 0 0 1px #2d8cf0;
+}
+.auntKind {
+  text-align: left;
+  padding: 30rpx 0;
+  background: #f8f8f9;
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  z-index: 2;
+  overflow: hidden;
+}
+.tag {
+  height: 18px;
+  line-height: 18px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: #fff;
+  font-size: 12px;
+  vertical-align: middle;
+  border: 1rpx solid #dddee1;
+  color: #495060;
+  background: #fff;
+  border-color: #ccc;
+}
+.auntKind .tag {
+  padding: 4px 20px;
+}
+.auntKind .active-tag {
+  color: #fff;
+  background: #2d8cf0;
+  border-color: #2d8cf0;
+}
+.modal-btn {
+  position: flex;
+}
+.showSelect {
+  display: none;
 }
 </style>
