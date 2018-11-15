@@ -12,22 +12,22 @@
     <div class="auntList">
       <view class="searchAunt">
         <view>
-            <view style="width: 24%" class="searchItem" @click="searchChange(0)">
+            <view class="searchItem" @click="searchChange(0)">
               阿姨类型
-              <i-icon color="#2d8cf0" :type="showList[0] ? 'unfold' : 'packup'"></i-icon>
+              <i-icon class="blue" :type="showList[0] ? 'unfold' : 'packup'"></i-icon>
             </view>
-            <span style="color:#2d8cf0">|</span>
-            <view style="width: 24%" class="searchItem" @click="searchChange(1)">
+            <span class="blue">|</span>
+            <view class="searchItem" @click="searchChange(1)">
               年龄区间
-              <i-icon color="#2d8cf0" :type="showList[1] ? 'unfold' : 'packup'"></i-icon>
+              <i-icon class="blue" :type="showList[1] ? 'unfold' : 'packup'"></i-icon>
             </view>
-            <span style="color:#2d8cf0">|</span>
-            <view style="width: 24%" class="searchItem" @click="searchChange(2)">
+            <span class="blue">|</span>
+            <view class="searchItem" @click="searchChange(2)">
               工作经验
-              <i-icon color="#2d8cf0" :type="showList[2] ? 'unfold' : 'packup'"></i-icon>
+              <i-icon class="blue" :type="showList[2] ? 'unfold' : 'packup'"></i-icon>
             </view>
-            <span style="color:#2d8cf0">|</span>
-            <view style="width: 24%" class="searchItem" @click="searchChange(3)">
+            <span class="blue">|</span>
+            <view class="searchItem" @click="searchChange(3)">
               更多筛选
               <i-icon type="more"></i-icon>
             </view>
@@ -49,34 +49,36 @@
         </view>
       </view>
       <view class="auntResult">
-          <div class="auntItem" v-for="(item, index) in auntList" :key="index" @click="toDetail">
+          <div class="auntItem" v-for="(item, index) in auntList" :key="index" @click="toDetail(item)">
             <i-row class="row">
               <i-col span="5" i-class="aunt-avatar">
-                <image style="width: 100%;height: 180rpx;margin-right: 20rpx" :src="item.avatar"/>
+                <image class="avatar-image" :src="item.careerPicPath"/>
               </i-col>
               <i-col span="18" i-class="col-class" offset="1">
                 <view class="flex-wrp" style="flex-direction:column;">
-                  <view style="line-height:60rpx;">
-                    {{item.name}}
+                  <view class="item-col">
+                    <span>
+                    {{item.name}}阿姨
+                    </span>
                     <i-tag 
                         style="margin-left:20rpx"
                         class="i-tags"
                         color="yellow">
-                        {{auntKind[item.kind]}}
+                        {{item.wantJob.type}}
                     </i-tag>
                   </view>
-                  <view style="line-height:60rpx">
-                    <span style="margin-right:10rpx;border-right:1px solid #ccc;">
+                  <view class="item-col">
+                    <span class="mini-tag">
                       {{item.age}}岁
                     </span>
-                    <span style="margin-right:10rpx;border-right:1px solid #ccc;">
+                    <span class="mini-tag">
                       {{item.education}}
                     </span>
-                    <span style="margin-right:10rpx;border-right:1px solid #ccc;">
-                      {{item.province}}
+                    <span class="mini-tag">
+                      {{item.birthplace}}人
                     </span>
                     <span>
-                      {{item.experience}}年
+                      {{item.workHistorys.length}}年
                     </span>
                     <!-- <i-rate 
                         style="font-size:12px;margin: 0 10rpx;"
@@ -84,16 +86,16 @@
                         :value="item.rate">
                         {{item.rate}}星
                     </i-rate> -->
-                    <p style="display:inline-block;position:absolute;right:20rpx;">
-                      ￥<span style="color:#f90">
-                        {{item.price}}
+                    <p class="price">
+                      ￥<span class="orange">
+                        {{item.wantJob.salary}}
                       </span>元 / 月
                     </p>
                   </view>
-                  <view style="line-height:60rpx">
+                  <view class="item-col">
                     <i-tag 
                         class="i-tags"
-                        v-for="(tag, num) in item.tags" 
+                        v-for="(tag, num) in item.ability" 
                         :key="num"
                         color="blue"
                         type="border"
@@ -110,24 +112,13 @@
           </div>
       </view>
     </div>
-    <div class="userinfo" @click="bindViewTap">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
-      </div>
-    </div>
-    <div class="usermotto">
-      <div class="user-motto">
-        <card :text="motto"></card>
-      </div>
-    </div>
-    <a href="/pages/mime/main" class="counter">去往Vuex示例页面</a>
   </div>
 </template>
 
 <script>
 import card from "@/components/card";
 import Fly from "flyio/dist/npm/wx";
+import "../../main.css";
 
 export default {
   data() {
@@ -157,43 +148,102 @@ export default {
       ],
       auntList: [
         {
-          name: "张阿姨",
-          age: 49,
-          rate: 4,
-          kind: 1,
-          avatar:
-            "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
-          province: "江西人",
-          education: "高中",
-          price: 6000,
-          experience: 12,
-          tags: ["洗衣服", "打扫卫生", "做饭"]
+          name: "杨勃测试小程序开发公司测试测试测",
+          nationality: "汉族",
+          openId: "oIkrE5Ns_7-ovAOiXVdy61_2yqV8",
+          birthday: "1973-06-01",
+          businessLicPath: "../../image/aunt.png",
+          authStatus: 2,
+          careerPicPath: "../../image/home.png",
+          certificates: [{}],
+          companyName: "",
+          education: "小学",
+          birthplace: "江西",
+          faith: "无",
+          gender: "男",
+          healthPicPath: "../../image/order.png",
+          idCardPath: "../../image/aunt-ac.png",
+          id: 7,
+          liveCity: "上海市,上海市,嘉定区",
+          mandarin: "标准",
+          ability: "洗衣服, 打扫卫生, 做饭",
+          marriage: "已婚已育",
+          orders: (4)[({}, {}, {}, {})],
+          phoneNum: "13022515154",
+          seniority: 0,
+          status: 1,
+          time: "2018-10-19 21:03:56",
+          userType: 1,
+          wantJob: { id: 9, isLiveHome: true, salary: 2000, type: "育儿嫂" },
+          workHistorys: [{}, {}],
+          address: "南京市雨花台区花神大道6号重型通讯二期二期二期二期"
         },
         {
-          name: "张阿姨",
-          age: 49,
-          rate: 4,
-          kind: 2,
-          avatar:
-            "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
-          province: "江西人",
-          education: "高中",
-          price: 6000,
-          experience: 12,
-          tags: ["洗衣服", "打扫卫生", "做饭"]
+          name: "杨勃测试小程序开发公司测试测试测",
+          nationality: "汉族",
+          openId: "oIkrE5Ns_7-ovAOiXVdy61_2yqV8",
+          birthday: "1973-06-01",
+          businessLicPath: "../../image/aunt.png",
+          authStatus: 2,
+          careerPicPath: "../../image/home.png",
+          certificates: [{}],
+          companyName: "",
+          education: "小学",
+          birthplace: "江西",
+          faith: "无",
+          gender: "男",
+          healthPicPath: "../../image/order.png",
+          idCardPath: "../../image/aunt-ac.png",
+          id: 7,
+          liveCity: "上海市,上海市,嘉定区",
+          mandarin: "标准",
+          ability: "洗衣服, 打扫卫生, 做饭",
+          marriage: "已婚已育",
+          orders: (4)[({}, {}, {}, {})],
+          phoneNum: "13022515154",
+          seniority: 0,
+          status: 1,
+          time: "2018-10-19 21:03:56",
+          userType: 1,
+          wantJob: { id: 9, isLiveHome: true, salary: 2000, type: "育儿嫂" },
+          workHistorys: [],
+          address: "南京市雨花台区花神大道6号重型通讯二期二期二期二期"
         },
         {
-          name: "张阿姨",
-          age: 49,
-          kind: 3,
-          rate: 4.5,
-          education: "高中",
-          avatar:
-            "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
-          province: "江西人",
-          price: 6000,
-          experience: 12,
-          tags: ["洗衣服", "打扫卫生", "做饭"]
+          name: "杨勃测试小程序开发公司测试测试测",
+          nationality: "汉族",
+          openId: "oIkrE5Ns_7-ovAOiXVdy61_2yqV8",
+          birthday: "1973-06-01",
+          businessLicPath: "../../image/aunt.png",
+          authStatus: 2,
+          careerPicPath: "../../image/home.png",
+          certificates: [{}],
+          companyName: "",
+          education: "小学",
+          birthplace: "江西",
+          faith: "无",
+          gender: "男",
+          healthPicPath: "../../image/order.png",
+          idCardPath: "../../image/aunt-ac.png",
+          id: 7,
+          liveCity: "上海市,上海市,嘉定区",
+          mandarin: "标准",
+          ability: "洗衣服, 打扫卫生, 做饭",
+          marriage: "已婚已育",
+          orders: (4)[({}, {}, {}, {})],
+          phoneNum: "13022515154",
+          seniority: 0,
+          status: 1,
+          time: "2018-10-19 21:03:56",
+          userType: 1,
+          wantJob: {
+            id: 9,
+            isLiveHome: true,
+            salary: 2000,
+            type: "育儿嫂"
+          },
+          workHistorys: [],
+          address: "南京市雨花台区花神大道6号重型通讯二期二期二期二期"
         }
       ]
     };
@@ -208,6 +258,20 @@ export default {
       const url = "../logs/main";
       wx.navigateTo({ url });
     },
+    formateAge(str) {
+      var r = String(str).match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+      if (r == null) return false;
+      var d = new Date(r[1], r[3] - 1, r[4]);
+      if (
+        d.getFullYear() == r[1] &&
+        d.getMonth() + 1 == r[3] &&
+        d.getDate() == r[4]
+      ) {
+        var Y = new Date().getFullYear();
+        return Y - r[1];
+      }
+      return "输入的日期格式错误！";
+    },
     getUserInfo() {
       // 调用登录接口
       wx.login({
@@ -220,32 +284,39 @@ export default {
         }
       });
     },
+    getAuntList() {
+      // 获取数据.
+      this.initAuntList(this.auntList);
+    },
+    initAuntList(data) {
+      // this.auntList = [];
+      data.forEach(item => {
+        item.ability = item.ability.split(",");
+        item.name = item.name.slice(0, 1);
+        item.age = this.formateAge(item.birthday);
+        if (item.userType === 1) {
+          this.auntList.push(item);
+        }
+      });
+    },
     clickHandle(msg, ev) {
       console.log("clickHandle:", msg, ev);
     },
     searchChange(val) {
       this.showModal = !this.showModal;
       this.showList[val] = !this.showList[val];
-      switch (val) {
-        case 0:
-          this.selectList = this.auntKind;
-          break;
-        case 1:
-          this.selectList = this.auntKind;
-          break;
-        case 2:
-          this.selectList = this.auntKind;
-          break;
-        default:
-          break;
-      }
+      this.selectList = this.auntKind;
     },
-    toDetail() {}
+    toDetail(aunt) {
+      const url = `../auntDetail/main?aunt=${aunt}`;
+      wx.navigateTo({ url });
+    }
   },
 
   created() {
     // 调用应用实例的方法获取全局数据
     this.getUserInfo();
+    this.getAuntList();
     this.location = wx.getLocation({
       type: "wgs84",
       success(res) {
@@ -259,31 +330,7 @@ export default {
 };
 </script>
 
-<style scoped>
-* {
-  font-size: 12px !important;
-}
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 150px;
-}
-
+<style>
 .form-control {
   display: block;
   padding: 0 12px;
@@ -305,18 +352,13 @@ export default {
 .noticeBar.i-noticebar {
   font-size: 12px;
 }
-.searchAunt /deep/ .searchItem {
-  line-height: 70rpx;
-  text-align: center;
-  display: inline-block;
-}
 .auntResult {
   padding: 10rpx;
 }
 .auntItem {
   position: relative;
 }
-.auntResult /deep/ .auntItem {
+.auntResult .auntItem {
   padding: 10rpx;
   height: 200rpx;
   margin-bottom: 10rpx;
@@ -324,7 +366,7 @@ export default {
   display: block;
   overflow: hidden;
 }
-.auntItem /deep/ .aunt-avatar {
+.auntItem .aunt-avatar {
   height: 180rpx;
   overflow: hidden;
 }
@@ -333,7 +375,7 @@ export default {
   top: 10rpx;
   right: 20rpx;
 }
-.auntBtn /deep/ ._button {
+.auntBtn ._button {
   font-size: 12px !important;
   height: 30px;
   line-height: 30px;
@@ -376,6 +418,9 @@ export default {
   color: #fff;
   background: #2d8cf0;
   border-color: #2d8cf0;
+}
+.flex-wrp .item-col {
+  line-height: 60rpx;
 }
 .modal-btn {
   position: flex;

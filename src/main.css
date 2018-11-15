@@ -1,0 +1,78 @@
+* {
+  font-size: 12px !important;
+}
+
+.blue {
+  color: #2d8cf0;
+}
+
+.orange {
+  color: #f90;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 150px;
+}
+
+.searchAunt .searchItem {
+  width: 24.5%;
+  line-height: 70rpx;
+  text-align: center;
+  display: inline-block;
+}
+
+.price {
+  display: inline-block;
+  position: absolute;
+  right: 20rpx;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 180rpx;
+  margin-right: 20rpx;
+}
+
+.textEllipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  width: 300px;
+  line-height: 60rpx;
+}
+
+.textEllipsis2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.mini-tag {
+  margin-right: 10rpx;
+  border-right: 1px solid #ccc;
+}
+
+.boldFont {
+  font-size: 14px;
+  font-weight: bold;
+}

@@ -12,22 +12,22 @@
     <div class="auntList">
       <view class="searchAunt">
         <view>
-            <view style="width: 24%" class="searchItem" @click="searchChange(0)">
+            <view class="searchItem" @click="searchChange(0)">
               订单类型
               <i-icon color="#2d8cf0" :type="showList[0] ? 'unfold' : 'packup'"></i-icon>
             </view>
             <span style="color:#2d8cf0">|</span>
-            <view style="width: 24%" class="searchItem" @click="searchChange(1)">
+            <view class="searchItem" @click="searchChange(1)">
               工资区间
               <i-icon color="#2d8cf0" :type="showList[1] ? 'unfold' : 'packup'"></i-icon>
             </view>
             <span style="color:#2d8cf0">|</span>
-            <view style="width: 24%" class="searchItem" @click="searchChange(2)">
+            <view class="searchItem" @click="searchChange(2)">
               服务城市
               <i-icon color="#2d8cf0" :type="showList[2] ? 'unfold' : 'packup'"></i-icon>
             </view>
             <span style="color:#2d8cf0">|</span>
-            <view style="width: 24%" class="searchItem" @click="searchChange(3)">
+            <view class="searchItem" @click="searchChange(3)">
               排序
               <i-icon type="more"></i-icon>
             </view>
@@ -53,26 +53,27 @@
             <i-row class="row">
               <i-col span="18" i-class="col-class" offset="1">
                 <view class="flex-wrp" style="flex-direction:column;">
-                  <view style="line-height:60rpx;">
-                    <span style="font-size:14px;font-weight: bold;">
-                      {{item.position}}
+                  <view class="">
+                    <span class="boldFont">
+                      育儿嫂
                     </span>
                     <span 
-                        style="margin-left:20rpx;color:#f90;"
+                        style="margin-left:20rpx;"
+                        class="orange"
                         >
                         {{item.home ? '住家' : '不住家'}}
                     </span>
-                    <p style="display:inline-block;position:absolute;right:20rpx;">
-                      ￥<span style="color:#f90">
-                        {{item.price}}
+                    <p class="price">
+                      ￥<span class="orange">
+                        {{item.workHistorys.salary}}
                       </span>元 / 月
                     </p>
                   </view>
-                  <view style="line-height:60rpx">
+                  <view class="item-col">
                     需求技能：
                     <i-tag 
                         class="i-tags"
-                        v-for="(tag, num) in item.tags" 
+                        v-for="(tag, num) in item.ability" 
                         :key="num"
                         color="blue"
                         type="border"
@@ -80,14 +81,12 @@
                         {{tag}}
                     </i-tag>
                   </view>
-                  <view style="line-height:60rpx">
-                    服务地址：
-                    <span style="margin-right:10rpx;">
-                      <i-icon type="coordinates"></i-icon>
+                  <p class="textEllipsis">
+                  服务地址：
+                      <i-icon type="coordinates" style="margin-right:10rpx;"></i-icon>
                       {{item.address}}
-                    </span>
-                  </view>
-                  <view style="line-height:60rpx">
+                  </p>
+                  <view class="item-col">
                     发布时间：
                     <span style="margin-right:10rpx;">
                       <i-icon type="time"></i-icon>
@@ -104,24 +103,13 @@
           </div>
       </view>
     </div>
-    <div class="userinfo" @click="bindViewTap">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
-      </div>
-    </div>
-    <div class="usermotto">
-      <div class="user-motto">
-        <card :text="motto"></card>
-      </div>
-    </div>
-    <a href="/pages/mime/main" class="counter">去往Vuex示例页面</a>
   </div>
 </template>
 
 <script>
 import card from "@/components/card";
 import Fly from "flyio/dist/npm/wx";
+import "../../main.css";
 
 export default {
   data() {
@@ -151,28 +139,102 @@ export default {
       ],
       auntList: [
         {
-          position: "育儿嫂",
-          home: true,
-          tags: ["洗衣服", "打扫卫生", "做饭"],
-          date: "2018-11-11",
-          price: 7000,
-          address: "杭州市西湖区融创河滨之城"
+          name: "杨勃测试小程序开发公司测试测试测",
+          nationality: "汉族",
+          openId: "oIkrE5Ns_7-ovAOiXVdy61_2yqV8",
+          birthday: "1973-06-01",
+          businessLicPath: "../../image/aunt.png",
+          authStatus: 2,
+          careerPicPath: "../../image/home.png",
+          certificates: [{}],
+          companyName: "",
+          education: "小学",
+          birthplace: "江西",
+          faith: "无",
+          gender: "男",
+          healthPicPath: "../../image/order.png",
+          idCardPath: "../../image/aunt-ac.png",
+          id: 7,
+          liveCity: "上海市,上海市,嘉定区",
+          mandarin: "标准",
+          ability: "洗衣服, 打扫卫生, 做饭",
+          marriage: "已婚已育",
+          orders: (4)[({}, {}, {}, {})],
+          phoneNum: "13022515154",
+          seniority: 0,
+          status: 1,
+          time: "2018-10-19 21:03:56",
+          userType: 1,
+          wantJob: { id: 9, isLiveHome: true, salary: 2000, type: "育儿嫂" },
+          workHistorys: [{}, {}],
+          address: "南京市雨花台区花神大道6号重型通讯二期二期二期二期"
         },
         {
-          position: "育儿嫂",
-          home: true,
-          tags: ["洗衣服", "打扫卫生", "做饭"],
-          date: "2018-11-11",
-          price: 7000,
-          address: "杭州市西湖区融创河滨之城"
+          name: "杨勃测试小程序开发公司测试测试测",
+          nationality: "汉族",
+          openId: "oIkrE5Ns_7-ovAOiXVdy61_2yqV8",
+          birthday: "1973-06-01",
+          businessLicPath: "../../image/aunt.png",
+          authStatus: 2,
+          careerPicPath: "../../image/home.png",
+          certificates: [{}],
+          companyName: "",
+          education: "小学",
+          birthplace: "江西",
+          faith: "无",
+          gender: "男",
+          healthPicPath: "../../image/order.png",
+          idCardPath: "../../image/aunt-ac.png",
+          id: 7,
+          liveCity: "上海市,上海市,嘉定区",
+          mandarin: "标准",
+          ability: "洗衣服, 打扫卫生, 做饭",
+          marriage: "已婚已育",
+          orders: (4)[({}, {}, {}, {})],
+          phoneNum: "13022515154",
+          seniority: 0,
+          status: 2,
+          time: "2018-10-19 21:03:56",
+          userType: 1,
+          wantJob: { id: 9, isLiveHome: true, salary: 2000, type: "育儿嫂" },
+          workHistorys: [],
+          address: "南京市雨花台区花神大道6号重型通讯二期二期二期二期"
         },
         {
-          position: "育儿嫂",
-          home: true,
-          tags: ["洗衣服", "打扫卫生", "做饭"],
-          date: "2018-11-11",
-          price: 7000,
-          address: "杭州市西湖区融创河滨之城"
+          name: "杨勃测试小程序开发公司测试测试测",
+          nationality: "汉族",
+          openId: "oIkrE5Ns_7-ovAOiXVdy61_2yqV8",
+          birthday: "1973-06-01",
+          businessLicPath: "../../image/aunt.png",
+          authStatus: 2,
+          careerPicPath: "../../image/home.png",
+          certificates: [{}],
+          companyName: "",
+          education: "小学",
+          birthplace: "江西",
+          faith: "无",
+          gender: "男",
+          healthPicPath: "../../image/order.png",
+          idCardPath: "../../image/aunt-ac.png",
+          id: 7,
+          liveCity: "上海市,上海市,嘉定区",
+          mandarin: "标准",
+          ability: "洗衣服, 打扫卫生, 做饭",
+          marriage: "已婚已育",
+          orders: (4)[({}, {}, {}, {})],
+          phoneNum: "13022515154",
+          seniority: 0,
+          status: 1,
+          time: "2018-10-19 21:03:56",
+          userType: 1,
+          wantJob: {
+            id: 9,
+            isLiveHome: true,
+            salary: 2000,
+            type: "育儿嫂"
+          },
+          workHistorys: [],
+          address: "南京市雨花台区花神大道6号重型通讯二期二期二期二期"
         }
       ]
     };
@@ -187,6 +249,20 @@ export default {
       const url = "../logs/main";
       wx.navigateTo({ url });
     },
+    formateAge(str) {
+      var r = String(str).match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+      if (r == null) return false;
+      var d = new Date(r[1], r[3] - 1, r[4]);
+      if (
+        d.getFullYear() == r[1] &&
+        d.getMonth() + 1 == r[3] &&
+        d.getDate() == r[4]
+      ) {
+        var Y = new Date().getFullYear();
+        return Y - r[1];
+      }
+      return "输入的日期格式错误！";
+    },
     getUserInfo() {
       // 调用登录接口
       wx.login({
@@ -196,6 +272,19 @@ export default {
               this.userInfo = res.userInfo;
             }
           });
+        }
+      });
+    },
+    getAuntList() {
+      // 获取数据.
+      this.initAuntList(this.auntList);
+    },
+    initAuntList(data) {
+      // this.auntList = [];
+      data.forEach(item => {
+        item.ability = item.ability.split(",");
+        if (item.userType === 2) {
+          this.auntList.push(item);
         }
       });
     },
@@ -225,6 +314,7 @@ export default {
   created() {
     // 调用应用实例的方法获取全局数据
     this.getUserInfo();
+    this.getAuntList();
     this.location = wx.getLocation({
       type: "wgs84",
       success(res) {
@@ -238,31 +328,7 @@ export default {
 };
 </script>
 
-<style scoped>
-* {
-  font-size: 12px !important;
-}
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 150px;
-}
-
+<style>
 .form-control {
   display: block;
   padding: 0 12px;
@@ -284,18 +350,13 @@ export default {
 .noticeBar.i-noticebar {
   font-size: 12px;
 }
-.searchAunt /deep/ .searchItem {
-  line-height: 70rpx;
-  text-align: center;
-  display: inline-block;
-}
 .auntResult {
   padding: 10rpx;
 }
 .auntItem {
   position: relative;
 }
-.auntResult /deep/ .auntItem {
+.auntResult .auntItem {
   padding: 10rpx;
   height: 250rpx;
   margin-bottom: 10rpx;
@@ -303,7 +364,7 @@ export default {
   display: block;
   overflow: hidden;
 }
-.auntItem /deep/ .aunt-avatar {
+.auntItem .aunt-avatar {
   height: 180rpx;
   overflow: hidden;
 }
@@ -312,7 +373,7 @@ export default {
   bottom: 10rpx;
   right: 20rpx;
 }
-.auntBtn /deep/ ._button {
+.auntBtn ._button {
   float: left;
   font-size: 12px !important;
   height: 30px;
@@ -357,6 +418,9 @@ export default {
   color: #fff;
   background: #2d8cf0;
   border-color: #2d8cf0;
+}
+.flex-wrp .item-col {
+  line-height: 60rpx;
 }
 .modal-btn {
   position: flex;

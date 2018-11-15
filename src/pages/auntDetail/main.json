@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "好阿姨之家",
+  "navigationBarTitleText": "阿姨详情",
   "usingComponents": {
     "i-notice-bar": "../../../static/dist/notice-bar/index",
     "i-card": "../../../static/dist/card/index",

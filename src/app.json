@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/main",
     "pages/order/main",
-    "pages/mime/main"
+    "pages/mime/main",
+    "pages/auntDetail/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
