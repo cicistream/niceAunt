@@ -49,9 +49,9 @@
         </view>
       </view>
       <view class="auntResult">
-          <div class="auntItem" v-for="(item, index) in auntList" :key="index" @click="toDetail">
+          <div class="auntItem" v-for="(item, index) in auntList" :key="index" @click="toDetail(item.id)">
             <i-row class="row">
-              <i-col span="18" i-class="col-class" offset="1">
+              <i-col span="20" i-class="col-class" offset="1">
                 <view class="flex-wrp" style="flex-direction:column;">
                   <view class="">
                     <span class="boldFont">
@@ -65,7 +65,7 @@
                     </span>
                     <p class="price">
                       ￥<span class="orange">
-                        {{item.workHistorys.salary}}
+                        {{item.salary}}
                       </span>元 / 月
                     </p>
                   </view>
@@ -83,14 +83,14 @@
                   </view>
                   <p class="textEllipsis">
                   服务地址：
-                      <i-icon type="coordinates" style="margin-right:10rpx;"></i-icon>
-                      {{item.address}}
+                      <i-icon type="coordinates"></i-icon>
+                      {{item.workCity + item.workLocDetail}}
                   </p>
                   <view class="item-col">
                     发布时间：
                     <span style="margin-right:10rpx;">
                       <i-icon type="time"></i-icon>
-                      {{item.date}}
+                      {{item.time}}
                     </span>
                   </view>
                 </view>
@@ -139,102 +139,58 @@ export default {
       ],
       auntList: [
         {
-          name: "杨勃测试小程序开发公司测试测试测",
-          nationality: "汉族",
-          openId: "oIkrE5Ns_7-ovAOiXVdy61_2yqV8",
-          birthday: "1973-06-01",
-          businessLicPath: "../../image/aunt.png",
-          authStatus: 2,
-          careerPicPath: "../../image/home.png",
-          certificates: [{}],
-          companyName: "",
-          education: "小学",
-          birthplace: "江西",
-          faith: "无",
-          gender: "男",
-          healthPicPath: "../../image/order.png",
-          idCardPath: "../../image/aunt-ac.png",
-          id: 7,
-          liveCity: "上海市,上海市,嘉定区",
-          mandarin: "标准",
-          ability: "洗衣服, 打扫卫生, 做饭",
-          marriage: "已婚已育",
-          orders: (4)[({}, {}, {}, {})],
-          phoneNum: "13022515154",
-          seniority: 0,
-          status: 1,
-          time: "2018-10-19 21:03:56",
-          userType: 1,
-          wantJob: { id: 9, isLiveHome: true, salary: 2000, type: "育儿嫂" },
-          workHistorys: [{}, {}],
-          address: "南京市雨花台区花神大道6号重型通讯二期二期二期二期"
+          ability: "老人生活照料,老人医疗护理,老人康复保健",
+          ageRange: "40-45岁,45-50岁",
+          birthplace: "江苏,浙江,上海",
+          detail: "发的撒打 ",
+          id: 10,
+          isActive: true,
+          isLiveHome: false,
+          name: "测试2",
+          phoneNum: "15777787774",
+          restDay: "单休",
+          salary: 8000,
+          seniority: "6-8年,8年以上",
+          time: "2018-11-10",
+          type: "养老护理",
+          workCity: "上海",
+          workLocDetail: "第三方撒范德萨第三方"
         },
         {
-          name: "杨勃测试小程序开发公司测试测试测",
-          nationality: "汉族",
-          openId: "oIkrE5Ns_7-ovAOiXVdy61_2yqV8",
-          birthday: "1973-06-01",
-          businessLicPath: "../../image/aunt.png",
-          authStatus: 2,
-          careerPicPath: "../../image/home.png",
-          certificates: [{}],
-          companyName: "",
-          education: "小学",
-          birthplace: "江西",
-          faith: "无",
-          gender: "男",
-          healthPicPath: "../../image/order.png",
-          idCardPath: "../../image/aunt-ac.png",
-          id: 7,
-          liveCity: "上海市,上海市,嘉定区",
-          mandarin: "标准",
-          ability: "洗衣服, 打扫卫生, 做饭",
-          marriage: "已婚已育",
-          orders: (4)[({}, {}, {}, {})],
-          phoneNum: "13022515154",
-          seniority: 0,
-          status: 2,
-          time: "2018-10-19 21:03:56",
-          userType: 1,
-          wantJob: { id: 9, isLiveHome: true, salary: 2000, type: "育儿嫂" },
-          workHistorys: [],
-          address: "南京市雨花台区花神大道6号重型通讯二期二期二期二期"
+          ability: "老人生活照料,老人医疗护理,老人康复保健",
+          ageRange: "40-45岁,45-50岁",
+          birthplace: "江苏,浙江,上海",
+          detail: "发的撒打 ",
+          id: 10,
+          isActive: true,
+          isLiveHome: false,
+          name: "测试2",
+          phoneNum: "15777787774",
+          restDay: "单休",
+          salary: 8000,
+          seniority: "6-8年,8年以上",
+          time: "2018-11-10",
+          type: "养老护理",
+          workCity: "上海",
+          workLocDetail: "第三方撒范德萨第三方"
         },
         {
-          name: "杨勃测试小程序开发公司测试测试测",
-          nationality: "汉族",
-          openId: "oIkrE5Ns_7-ovAOiXVdy61_2yqV8",
-          birthday: "1973-06-01",
-          businessLicPath: "../../image/aunt.png",
-          authStatus: 2,
-          careerPicPath: "../../image/home.png",
-          certificates: [{}],
-          companyName: "",
-          education: "小学",
-          birthplace: "江西",
-          faith: "无",
-          gender: "男",
-          healthPicPath: "../../image/order.png",
-          idCardPath: "../../image/aunt-ac.png",
-          id: 7,
-          liveCity: "上海市,上海市,嘉定区",
-          mandarin: "标准",
-          ability: "洗衣服, 打扫卫生, 做饭",
-          marriage: "已婚已育",
-          orders: (4)[({}, {}, {}, {})],
-          phoneNum: "13022515154",
-          seniority: 0,
-          status: 1,
-          time: "2018-10-19 21:03:56",
-          userType: 1,
-          wantJob: {
-            id: 9,
-            isLiveHome: true,
-            salary: 2000,
-            type: "育儿嫂"
-          },
-          workHistorys: [],
-          address: "南京市雨花台区花神大道6号重型通讯二期二期二期二期"
+          ability: "老人生活照料,老人医疗护理,老人康复保健",
+          ageRange: "40-45岁,45-50岁",
+          birthplace: "江苏,浙江,上海",
+          detail: "发的撒打 ",
+          id: 10,
+          isActive: true,
+          isLiveHome: false,
+          name: "测试2",
+          phoneNum: "15777787774",
+          restDay: "单休",
+          salary: 8000,
+          seniority: "6-8年,8年以上",
+          time: "2018-11-10",
+          type: "养老护理",
+          workCity: "上海",
+          workLocDetail: "第三方撒范德萨第三方"
         }
       ]
     };
@@ -248,20 +204,6 @@ export default {
     bindViewTap() {
       const url = "../logs/main";
       wx.navigateTo({ url });
-    },
-    formateAge(str) {
-      var r = String(str).match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
-      if (r == null) return false;
-      var d = new Date(r[1], r[3] - 1, r[4]);
-      if (
-        d.getFullYear() == r[1] &&
-        d.getMonth() + 1 == r[3] &&
-        d.getDate() == r[4]
-      ) {
-        var Y = new Date().getFullYear();
-        return Y - r[1];
-      }
-      return "输入的日期格式错误！";
     },
     getUserInfo() {
       // 调用登录接口
@@ -282,7 +224,7 @@ export default {
     initAuntList(data) {
       // this.auntList = [];
       data.forEach(item => {
-        item.ability = item.ability.split(",");
+        item.ability = item.ability.split(",").slice(0, 2);
         if (item.userType === 2) {
           this.auntList.push(item);
         }
@@ -294,21 +236,13 @@ export default {
     searchChange(val) {
       this.showModal = !this.showModal;
       this.showList[val] = !this.showList[val];
-      switch (val) {
-        case 0:
-          this.selectList = this.auntKind;
-          break;
-        case 1:
-          this.selectList = this.auntKind;
-          break;
-        case 2:
-          this.selectList = this.auntKind;
-          break;
-        default:
-          break;
-      }
+      this.selectList = this.auntKind;
     },
-    toDetail() {}
+    toDetail(orderId) {
+      console.log(orderId);
+      const url = `../orderDetail/main?orderId=${orderId}`;
+      wx.navigateTo({ url });
+    }
   },
 
   created() {

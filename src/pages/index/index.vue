@@ -49,7 +49,7 @@
         </view>
       </view>
       <view class="auntResult">
-          <div class="auntItem" v-for="(item, index) in auntList" :key="index" @click="toDetail(item)">
+          <div class="auntItem" v-for="(item, index) in auntList" :key="index" @click="toDetail(item.id)">
             <i-row class="row">
               <i-col span="5" i-class="aunt-avatar">
                 <image class="avatar-image" :src="item.careerPicPath"/>
@@ -118,6 +118,7 @@
 <script>
 import card from "@/components/card";
 import Fly from "flyio/dist/npm/wx";
+import global from "../../utils/common.js";
 import "../../main.css";
 
 export default {
@@ -258,20 +259,6 @@ export default {
       const url = "../logs/main";
       wx.navigateTo({ url });
     },
-    formateAge(str) {
-      var r = String(str).match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
-      if (r == null) return false;
-      var d = new Date(r[1], r[3] - 1, r[4]);
-      if (
-        d.getFullYear() == r[1] &&
-        d.getMonth() + 1 == r[3] &&
-        d.getDate() == r[4]
-      ) {
-        var Y = new Date().getFullYear();
-        return Y - r[1];
-      }
-      return "输入的日期格式错误！";
-    },
     getUserInfo() {
       // 调用登录接口
       wx.login({
@@ -293,7 +280,7 @@ export default {
       data.forEach(item => {
         item.ability = item.ability.split(",");
         item.name = item.name.slice(0, 1);
-        item.age = this.formateAge(item.birthday);
+        item.age = global.initAge(item.birthday);
         if (item.userType === 1) {
           this.auntList.push(item);
         }
@@ -308,6 +295,7 @@ export default {
       this.selectList = this.auntKind;
     },
     toDetail(aunt) {
+      console.log(aunt);
       const url = `../auntDetail/main?aunt=${aunt}`;
       wx.navigateTo({ url });
     }

@@ -1,9 +1,5 @@
 <template>
   <div class="container" style="background: #f8f8f9;min-height:100vh">
-    <view class="mine-avatar">
-      <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" class="mine-image" />
-      <span class="boldFont name">张三吧</span>
-    </view>
     <view class="mine-block">
       <p @click="toResume">
         个人简历
@@ -29,12 +25,7 @@
 // Use Vuex
 export default {
   computed: {},
-  methods: {
-    toResume() {
-      const url = "../resume/main";
-      wx.navigateTo({ url });
-    }
-  }
+  methods: {}
 };
 </script>
 
@@ -54,6 +45,7 @@ export default {
   float: left;
 }
 .mine-avatar .name {
+  display: inline-block;
   margin-left: 40rpx;
   line-height: 120rpx;
   float: left;
