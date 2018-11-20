@@ -1,22 +1,12 @@
 <template>
-  <div class="container" style="background: #f8f8f9;min-height:100vh">
+  <div class="container resume" style="background: #f8f8f9;min-height:100vh;font-size: 12px;">
     <view class="mine-block">
-      <p @click="toResume">
-        个人简历
-        <i-icon type="enter"  class="auntBtn"/>
-      </p>
-      <p @click="to">
-        应聘记录
-        <i-icon type="enter"  class="auntBtn"/>
-      </p>
-      <p @click="to">
-        个人简历
-        <i-icon type="enter"  class="auntBtn"/>
-      </p>
-      <p style="border: 0">
-        个人简历
-        <i-icon type="enter"  class="auntBtn"/>
-      </p>
+      <p>基础信息</p>
+      <i-input :value="mine.name" title="姓名" autofocus placeholder="名字" />
+      <i-input :value="mine.age" type="number" title="年龄" placeholder="岁数" />
+      <i-input :value="mine.phone" type="number" title="联系电话" placeholder="请输入手机号" />
+      <!-- <i-input value="{{ value3 }}" type="textarea" title="详细地址" placeholder="请输入详细地址(最多50字)" maxlength="50" />
+      <i-input value="{{ value4 }}" title="用户信息" disabled /> -->
     </view>
   </div>
 </template>
@@ -24,6 +14,15 @@
 <script>
 // Use Vuex
 export default {
+  data() {
+    return {
+      mine: {
+        name: "",
+        age: "",
+        phone: ""
+      }
+    };
+  },
   computed: {},
   methods: {}
 };
@@ -45,18 +44,20 @@ export default {
   float: left;
 }
 .mine-avatar .name {
-  display: inline-block;
   margin-left: 40rpx;
   line-height: 120rpx;
   float: left;
 }
-.mine-block {
+.resume .mine-block {
   margin: 20rpx 0;
   background: #fff;
-  line-height: 100rpx;
+  line-height: 40rpx;
 }
-.mine-block p {
-  padding: 0 40rpx;
+.resume ._i-input {
+  font-size: 12px;
+}
+.resume .mine-block p {
+  padding: 30rpx;
   position: relative;
   border-bottom: 1px solid #e9eaec;
 }

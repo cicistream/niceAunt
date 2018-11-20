@@ -41,7 +41,7 @@ export default {
 <style>
 .mine-avatar {
   line-height: 120rpx;
-  height: 120rpx;
+  height: 140rpx;
   margin: 10rpx 0;
   padding: 10rpx 60rpx;
   background: #fff;
