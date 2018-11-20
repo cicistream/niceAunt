@@ -6,7 +6,7 @@
           <image :src="item" class="slide-image" mode="scaleToFill"/>
         </swiper-item>
     </swiper>
-    <i-notice-bar icon="systemprompt" i-class="noticeBar">
+    <i-notice-bar icon="systemprompt" i-class="noticeBar" closable loop>
       2018年世界杯,将于6月14日至7月15日举行
     </i-notice-bar>
     <div class="auntList">
