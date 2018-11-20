@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/main",
+    "pages/login/main",
     "pages/order/main",
     "pages/mime/main",
     "pages/auntDetail/main",
