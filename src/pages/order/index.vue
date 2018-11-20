@@ -14,21 +14,21 @@
         <view>
             <view class="searchItem" @click="searchChange(0)">
               订单类型
-              <i-icon color="#2d8cf0" :type="showList[0] ? 'unfold' : 'packup'"></i-icon>
+              <i-icon color="#2d8cf0" :type="showList[0].show ? 'unfold' : 'packup'"></i-icon>
             </view>
             <span style="color:#2d8cf0">|</span>
             <view class="searchItem" @click="searchChange(1)">
               工资区间
-              <i-icon color="#2d8cf0" :type="showList[1] ? 'unfold' : 'packup'"></i-icon>
+              <i-icon color="#2d8cf0" :type="showList[1].show ? 'unfold' : 'packup'"></i-icon>
             </view>
             <span style="color:#2d8cf0">|</span>
             <view class="searchItem" @click="searchChange(2)">
               服务城市
-              <i-icon color="#2d8cf0" :type="showList[2] ? 'unfold' : 'packup'"></i-icon>
+              <i-icon color="#2d8cf0" :type="showList[2].show ? 'unfold' : 'packup'"></i-icon>
             </view>
             <span style="color:#2d8cf0">|</span>
             <view class="searchItem" @click="searchChange(3)">
-              排序
+              时间排序
               <i-icon type="more"></i-icon>
             </view>
         </view>
@@ -134,7 +134,20 @@ export default {
       },
       showList: [
         {
-          kind: "auntKind"
+          show: false,
+          list: ["月嫂", "育儿嫂", "钟点工"]
+        },
+        {
+          show: false,
+          list: ["月嫂", "育儿嫂", "钟点工"]
+        },
+        {
+          show: false,
+          list: ["月嫂", "育儿嫂", "钟点工"]
+        },
+        {
+          show: false,
+          list: ["月嫂", "育儿嫂", "钟点工"]
         }
       ],
       auntList: [
@@ -233,10 +246,16 @@ export default {
     clickHandle(msg, ev) {
       console.log("clickHandle:", msg, ev);
     },
-    searchChange(val) {
+    searchChange(num) {
       this.showModal = !this.showModal;
-      this.showList[val] = !this.showList[val];
-      this.selectList = this.auntKind;
+      if (this.showModal) {
+        this.showList.forEach((item, index) => {
+          item.show = false;
+        });
+      } else {
+        this.showList[num].show = !this.showList[num].show;
+      }
+      this.selectList = this.showList[num].list; //根据筛选条件填写
     },
     toDetail(orderId) {
       console.log(orderId);

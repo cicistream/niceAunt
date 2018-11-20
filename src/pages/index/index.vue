@@ -14,22 +14,22 @@
         <view>
             <view class="searchItem" @click="searchChange(0)">
               阿姨类型
-              <i-icon class="blue" :type="showList[0] ? 'unfold' : 'packup'"></i-icon>
+              <i-icon class="blue" :type="showList[0].show ? 'unfold' : 'packup'"></i-icon>
             </view>
             <span class="blue">|</span>
             <view class="searchItem" @click="searchChange(1)">
               年龄区间
-              <i-icon class="blue" :type="showList[1] ? 'unfold' : 'packup'"></i-icon>
+              <i-icon class="blue" :type="showList[1].show ? 'unfold' : 'packup'"></i-icon>
             </view>
             <span class="blue">|</span>
             <view class="searchItem" @click="searchChange(2)">
               工作经验
-              <i-icon class="blue" :type="showList[2] ? 'unfold' : 'packup'"></i-icon>
+              <i-icon class="blue" :type="showList[2].show ? 'unfold' : 'packup'"></i-icon>
             </view>
             <span class="blue">|</span>
             <view class="searchItem" @click="searchChange(3)">
-              更多筛选
-              <i-icon type="more"></i-icon>
+              阿姨籍贯
+              <i-icon class="blue" :type="showList[3].show ? 'unfold' : 'packup'"></i-icon>
             </view>
         </view>
         <view class="auntKind"
@@ -144,7 +144,20 @@ export default {
       },
       showList: [
         {
-          kind: "auntKind"
+          show: false,
+          list: ["月嫂", "育儿嫂", "钟点工"]
+        },
+        {
+          show: false,
+          list: ["月嫂", "育儿嫂", "钟点工"]
+        },
+        {
+          show: false,
+          list: ["月嫂", "育儿嫂", "钟点工"]
+        },
+        {
+          show: false,
+          list: ["月嫂", "育儿嫂", "钟点工"]
         }
       ],
       auntList: [
@@ -272,6 +285,7 @@ export default {
       this.initAuntList(this.auntList);
     },
     initAuntList(data) {
+      // 初始化列表到符合显示的格式
       // this.auntList = [];
       data.forEach(item => {
         item.ability = item.ability.split(",");
@@ -282,16 +296,18 @@ export default {
         }
       });
     },
-    clickHandle(msg, ev) {
-      console.log("clickHandle:", msg, ev);
-    },
-    searchChange(val) {
+    searchChange(num) {
+      if (!this.showModal) {
+        this.showList.forEach((item, index) => {
+          item.show = false;
+        });
+      } else {
+        this.showList[num].show = !this.showList[num].show;
+      }
+      this.selectList = this.showList[num].list; //根据筛选条件填写
       this.showModal = !this.showModal;
-      this.showList[val] = !this.showList[val];
-      this.selectList = this.auntKind;
     },
     toDetail(aunt) {
-      console.log(aunt);
       const url = `../auntDetail/main?aunt=${aunt}`;
       wx.navigateTo({ url });
     }
