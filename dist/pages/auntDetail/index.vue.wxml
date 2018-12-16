@@ -1,0 +1,86 @@
+<template name="2f453fec">
+  <view class="_div data-v-bea4f3c4 container" style="background-color:#f8f8f9">
+    <view class="_div data-v-bea4f3c4 auntInfo">
+      <image class="_image data-v-bea4f3c4 detail-image" mode="aspectFill" src="{{auntDetail.careerPicPath}}"></image>
+      <view class="_view data-v-bea4f3c4 infoBlock">
+        <view class="_p data-v-bea4f3c4 boldFont">
+          {{auntDetail.name}} <label wx:if="{{auntDetail.status === 1}}" class="_span data-v-bea4f3c4">阿姨</label></view>
+        <view style="height:20rpx;" class="_p data-v-bea4f3c4"></view>
+        <view class="_p data-v-bea4f3c4 auntInfoTag"><label class="_span data-v-bea4f3c4 tag-name">年龄</label>
+          {{auntDetail.age}}
+        </view>
+        <view class="_p data-v-bea4f3c4 auntInfoTag"><label class="_span data-v-bea4f3c4 tag-name">籍贯</label>
+          {{auntDetail.birthplace}}
+        </view>
+        <view class="_p data-v-bea4f3c4 auntInfoTag"><label class="_span data-v-bea4f3c4 tag-name">民族</label>
+          {{auntDetail.nationality}}
+        </view>
+        <view class="_p data-v-bea4f3c4 auntInfoTag"><label class="_span data-v-bea4f3c4 tag-name">学历</label>
+          {{auntDetail.education}}
+        </view>
+        <view class="_p data-v-bea4f3c4 auntInfoTag"><label class="_span data-v-bea4f3c4 tag-name">经验</label>
+          {{auntDetail.seniority}}年 </view>
+        <view class="_p data-v-bea4f3c4 auntInfoTag"><label class="_span data-v-bea4f3c4 tag-name">服务</label>
+          {{auntDetail.workHistorys.length}}户 </view>
+        <view class="_p data-v-bea4f3c4 auntInfoTag" style="width: 400rpx;"><label class="_span data-v-bea4f3c4 tag-name">电话</label>
+          {{auntDetail.phoneNum}}
+        </view>
+      </view>
+    </view>
+    <view class="_view data-v-bea4f3c4 blue" style="padding: 0 20rpx;background-color: #fff;line-height:60rpx;">
+      <i-icon type="createtask" class="_i-icon data-v-bea4f3c4"></i-icon> 求职意向： {{auntDetail.wantJob.isLiveHome ? '住家' : '不住家'}}
+      <i-tag style="margin-left:20rpx" class="_i-tag data-v-bea4f3c4 i-tags" color="yellow">
+        {{auntDetail.wantJob.type}}
+      </i-tag>
+      <view class="_p data-v-bea4f3c4 price"> ￥<label class="_span data-v-bea4f3c4 orange">
+          {{auntDetail.wantJob.salary}}
+        </label>元 / 月 </view>
+    </view>
+    <view class="_div data-v-bea4f3c4">
+      <view class="_view data-v-bea4f3c4 detailBlock">
+        <view class="_p data-v-bea4f3c4 detail-title">
+          <i-icon type="createtask" class="_i-icon data-v-bea4f3c4"></i-icon> 工作经历
+        </view>
+        <view class="_view data-v-bea4f3c4">
+          <view wx:key="index" key="{{index}}" class="_view data-v-bea4f3c4 moreInfoBlock" wx:for="{{auntDetail.workHistorys}}" wx:for-index="index" wx:for-item="order">
+            <view class="_p data-v-bea4f3c4 blue">
+              <i-icon type="flag_fill" class="_i-icon data-v-bea4f3c4"></i-icon> {{order.startTime}} - {{order.endTime}}
+              <i-tag style="margin-left:20rpx" class="_i-tag data-v-bea4f3c4 i-tags" color="yellow">
+                {{order.workType}}
+              </i-tag>
+            </view>
+            <view style="margin-left:20rpx;" class="_view data-v-bea4f3c4">
+              {{order.detail}}
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="_view data-v-bea4f3c4 detailBlock">
+        <view class="_p data-v-bea4f3c4 detail-title">
+          <i-icon type="dynamic" class="_i-icon data-v-bea4f3c4"></i-icon> 认证资料
+        </view>
+        <view class="_view data-v-bea4f3c4">
+          <view class="_view data-v-bea4f3c4 moreInfoBlock">
+            <view class="_p data-v-bea4f3c4 auntInfoTag" style="width:320rpx"><label class="_span data-v-bea4f3c4 tag-name" style="margin-right: 5px;">身份证照</label>
+              <i-icon type="{{auntDetail.idCardPath ? 'success_fill': 'delete_fill'}}" class="_i-icon data-v-bea4f3c4"></i-icon>
+            </view>
+            <view class="_p data-v-bea4f3c4 auntInfoTag" style="width:320rpx"><label class="_span data-v-bea4f3c4 tag-name" style="margin-right: 5px;">健康证</label>
+              <i-icon type="{{auntDetail.healthPicPath ? 'success_fill': 'delete_fill'}}" class="_i-icon data-v-bea4f3c4"></i-icon>
+            </view>
+            <view class="_p data-v-bea4f3c4 auntInfoTag" style="width:320rpx" wx:key="index" key="{{index}}" wx:for="{{auntDetail.certificates}}" wx:for-index="index" wx:for-item="item"><label class="_span data-v-bea4f3c4 tag-name" style="margin-right: 5px;">{{item.type}}</label>
+              <i-icon type="{{item.picPath ? 'success_fill': 'delete_fill'}}" class="_i-icon data-v-bea4f3c4"></i-icon>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="_view data-v-bea4f3c4 detailBlock">
+        <view class="_p data-v-bea4f3c4 detail-title">
+          <i-icon type="message" class="_i-icon data-v-bea4f3c4"></i-icon> 顾客评论
+        </view>
+        <view class="_view data-v-bea4f3c4">
+          <view class="_view data-v-bea4f3c4 moreInfoBlock"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

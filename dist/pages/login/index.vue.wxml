@@ -1,0 +1,13 @@
+<template name="3ec8d000">
+  <view class="_div data-v-4b68f56c container log">
+    <view class="_p data-v-4b68f56c title">请选择你的身份：</view>
+    <view class="_view data-v-4b68f56c log-container">
+      <view bindtap="handleProxy" class="_view data-v-4b68f56c login" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+        <image class="_image data-v-4b68f56c avatar-image" src="../../image/aunt-log.svg"></image> 阿姨
+      </view>
+      <view bindtap="handleProxy" class="_view data-v-4b68f56c login" data-eventid="{{'1'}}" data-comkey="{{$k}}">
+        <image class="_image data-v-4b68f56c avatar-image" src="../../image/company.svg"></image> 公司
+      </view>
+    </view>
+  </view>
+</template>

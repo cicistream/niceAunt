@@ -1,0 +1,56 @@
+<template name="05eb54b6">
+  <view class="_div data-v-67d7b311 container">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" class="_swiper data-v-67d7b311">
+      <swiper-item wx:key="index" key="{{index}}" wx:for="{{imgUrls}}" wx:for-index="index" wx:for-item="item" class="_swiper-item data-v-67d7b311">
+        <image src="{{item}}" class="_image data-v-67d7b311 slide-image" mode="scaleToFill"></image>
+      </swiper-item>
+    </swiper>
+    <i-notice-bar icon="systemprompt" i-class="noticeBar" closable loop class="_i-notice-bar data-v-67d7b311"> 2018年世界杯,将于6月14日至7月15日举行 </i-notice-bar>
+    <view class="_div data-v-67d7b311 auntList">
+      <view class="_view data-v-67d7b311 searchAunt">
+        <view class="_view data-v-67d7b311">
+          <view class="_view data-v-67d7b311 searchItem" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}"> 订单类型 <i-icon color="#2d8cf0" type="{{showList[0].show ? 'unfold' : 'packup'}}" class="_i-icon data-v-67d7b311"></i-icon>
+          </view> <label style="color:#2d8cf0" class="_span data-v-67d7b311">|</label>
+          <view class="_view data-v-67d7b311 searchItem" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}"> 工资区间 <i-icon color="#2d8cf0" type="{{showList[1].show ? 'unfold' : 'packup'}}" class="_i-icon data-v-67d7b311"></i-icon>
+          </view> <label style="color:#2d8cf0" class="_span data-v-67d7b311">|</label>
+          <view class="_view data-v-67d7b311 searchItem" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}"> 服务城市 <i-icon color="#2d8cf0" type="{{showList[2].show ? 'unfold' : 'packup'}}" class="_i-icon data-v-67d7b311"></i-icon>
+          </view> <label style="color:#2d8cf0" class="_span data-v-67d7b311">|</label>
+          <view class="_view data-v-67d7b311 searchItem" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}"> 时间排序 <i-icon type="more" class="_i-icon data-v-67d7b311"></i-icon>
+          </view>
+        </view>
+        <view class="_view data-v-67d7b311 auntKind {{[showModal ? 'showSelect' : '']}}"><label class="_span data-v-67d7b311 tag active-tag" style="margin-right:5px;"> 全部 </label> <label class="_span data-v-67d7b311 tag" wx:key="num" key="{{num}}" style="margin-right:5px;" wx:for="{{selectList}}" wx:for-index="num" wx:for-item="tag">
+            {{tag}}
+          </label></view>
+      </view>
+      <view class="_view data-v-67d7b311 auntResult">
+        <view class="_div data-v-67d7b311 auntItem" wx:key="index" key="{{index}}" bindtap="handleProxy" data-eventid="{{'6-'+index}}" data-comkey="{{$k}}" wx:for="{{auntList}}" wx:for-index="index" wx:for-item="item">
+          <i-row class="_i-row data-v-67d7b311 row">
+            <i-col span="20" i-class="col-class" offset="1" class="_i-col data-v-67d7b311">
+              <view class="_view data-v-67d7b311 flex-wrp" style="flex-direction:column;">
+                <view class="_view data-v-67d7b311"><label class="_span data-v-67d7b311 boldFont"> 育儿嫂 </label> <label style="margin-left:20rpx;" class="_span data-v-67d7b311 orange">
+                    {{item.home ? '住家' : '不住家'}}
+                  </label>
+                  <view class="_p data-v-67d7b311 price"> ￥<label class="_span data-v-67d7b311 orange">
+                      {{item.salary}}
+                    </label>元 / 月 </view>
+                </view>
+                <view class="_view data-v-67d7b311 item-col"> 需求技能： <i-tag class="_i-tag data-v-67d7b311 i-tags" wx:key="num" key="{{num}}" color="blue" type="border" style="margin-right:5px;" wx:for="{{item.ability}}" wx:for-index="num" wx:for-item="tag">
+                    {{tag}}
+                  </i-tag>
+                </view>
+                <view class="_p data-v-67d7b311 textEllipsis"> 服务地址： <i-icon type="coordinates" class="_i-icon data-v-67d7b311"></i-icon>
+                  {{item.workCity + item.workLocDetail}}
+                </view>
+                <view class="_view data-v-67d7b311 item-col"> 发布时间： <label style="margin-right:10rpx;" class="_span data-v-67d7b311">
+                    <i-icon type="time" class="_i-icon data-v-67d7b311"></i-icon>
+                    {{item.time}}
+                  </label></view>
+              </view>
+            </i-col>
+            <view class="_view data-v-67d7b311 auntBtn"><button bindtap="handleProxy" type="ghost" data-eventid="{{'4-'+index}}" data-comkey="{{$k}}" class="_button data-v-67d7b311">联系老师</button> <button bindtap="handleProxy" type="ghost" data-eventid="{{'5-'+index}}" data-comkey="{{$k}}" class="_button data-v-67d7b311">一键应聘</button></view>
+          </i-row>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

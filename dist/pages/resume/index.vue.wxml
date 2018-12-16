@@ -1,0 +1,10 @@
+<template name="c38ffc68">
+  <view class="_div data-v-e5d35c40 container resume" style="background: #f8f8f9;min-height:100vh;font-size: 12px;">
+    <view class="_view data-v-e5d35c40 mine-block">
+      <view class="_p data-v-e5d35c40">基础信息</view>
+      <i-input value="{{mine.name}}" title="姓名" autofocus placeholder="名字" class="_i-input data-v-e5d35c40"></i-input>
+      <i-input value="{{mine.age}}" type="number" title="年龄" placeholder="岁数" class="_i-input data-v-e5d35c40"></i-input>
+      <i-input value="{{mine.phone}}" type="number" title="联系电话" placeholder="请输入手机号" class="_i-input data-v-e5d35c40"></i-input>
+    </view>
+  </view>
+</template>

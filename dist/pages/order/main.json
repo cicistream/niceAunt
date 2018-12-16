@@ -1,0 +1,16 @@
+{
+  "navigationBarTitleText": "好阿姨",
+  "usingComponents": {
+    "i-notice-bar": "../../../static/dist/notice-bar/index",
+    "i-card": "../../../static/dist/card/index",
+    "i-row": "../../../static/dist/row/index",
+    "i-col": "../../../static/dist/col/index",
+    "i-action-sheet": "../../../static/dist/action-sheet/index",
+    "i-icon": "../../../static/dist/icon/index",
+    "i-button": "../../../static/dist/button/index",
+    "i-tag": "../../../static/dist/tag/index",
+    "i-rate": "../../../static/dist/rate/index",
+    "i-radio-group": "../../../static/dist/radio-group/index",
+    "i-radio": "../../../static/dist/radio/index"
+  }
+}

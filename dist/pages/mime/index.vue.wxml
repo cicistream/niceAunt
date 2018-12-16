@@ -1,0 +1,17 @@
+<template name="0c23bbda">
+  <view class="_div data-v-baed31b2 container" style="background: #f8f8f9;min-height:100vh">
+    <view class="_view data-v-baed31b2 mine-avatar">
+      <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" class="_image data-v-baed31b2 mine-image"></image> <label class="_span data-v-baed31b2 boldFont name">张三吧</label>
+    </view>
+    <view class="_view data-v-baed31b2 mine-block">
+      <view bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_p data-v-baed31b2"> 个人简历 <i-icon type="enter" class="_i-icon data-v-baed31b2 auntBtn"></i-icon>
+      </view>
+      <view bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_p data-v-baed31b2"> 应聘记录 <i-icon type="enter" class="_i-icon data-v-baed31b2 auntBtn"></i-icon>
+      </view>
+      <view bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}" class="_p data-v-baed31b2"> 个人简历 <i-icon type="enter" class="_i-icon data-v-baed31b2 auntBtn"></i-icon>
+      </view>
+      <view style="border: 0" class="_p data-v-baed31b2"> 个人简历 <i-icon type="enter" class="_i-icon data-v-baed31b2 auntBtn"></i-icon>
+      </view>
+    </view>
+  </view>
+</template>

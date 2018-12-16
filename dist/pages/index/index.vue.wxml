@@ -1,0 +1,62 @@
+<template name="506a3bae">
+  <view class="_div data-v-42983f95 container">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" class="_swiper data-v-42983f95">
+      <swiper-item wx:key="index" key="{{index}}" wx:for="{{imgUrls}}" wx:for-index="index" wx:for-item="item" class="_swiper-item data-v-42983f95">
+        <image src="{{item}}" class="_image data-v-42983f95 slide-image" mode="scaleToFill"></image>
+      </swiper-item>
+    </swiper>
+    <i-notice-bar icon="systemprompt" i-class="noticeBar" closable loop class="_i-notice-bar data-v-42983f95"> 2018年世界杯,将于6月14日至7月15日举行 </i-notice-bar>
+    <view class="_div data-v-42983f95 auntList">
+      <view class="_view data-v-42983f95 searchAunt">
+        <view class="_view data-v-42983f95">
+          <view class="_view data-v-42983f95 searchItem" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}"> 阿姨类型 <i-icon class="_i-icon data-v-42983f95 blue" type="{{showList[0].show ? 'unfold' : 'packup'}}"></i-icon>
+          </view> <label class="_span data-v-42983f95 blue">|</label>
+          <view class="_view data-v-42983f95 searchItem" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}"> 年龄区间 <i-icon class="_i-icon data-v-42983f95 blue" type="{{showList[1].show ? 'unfold' : 'packup'}}"></i-icon>
+          </view> <label class="_span data-v-42983f95 blue">|</label>
+          <view class="_view data-v-42983f95 searchItem" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}"> 工作经验 <i-icon class="_i-icon data-v-42983f95 blue" type="{{showList[2].show ? 'unfold' : 'packup'}}"></i-icon>
+          </view> <label class="_span data-v-42983f95 blue">|</label>
+          <view class="_view data-v-42983f95 searchItem" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}"> 阿姨籍贯 <i-icon class="_i-icon data-v-42983f95 blue" type="{{showList[3].show ? 'unfold' : 'packup'}}"></i-icon>
+          </view>
+        </view>
+        <view class="_view data-v-42983f95 auntKind {{[showModal ? 'showSelect' : '']}}"><label class="_span data-v-42983f95 tag active-tag" style="margin-right:5px;"> 全部 </label> <label class="_span data-v-42983f95 tag" wx:key="num" key="{{num}}" style="margin-right:5px;" wx:for="{{selectList}}" wx:for-index="num" wx:for-item="tag">
+            {{tag}}
+          </label></view>
+      </view>
+      <view class="_view data-v-42983f95 auntResult">
+        <view class="_div data-v-42983f95 auntItem" wx:key="index" key="{{index}}" bindtap="handleProxy" data-eventid="{{'5-'+index}}" data-comkey="{{$k}}" wx:for="{{auntList}}" wx:for-index="index" wx:for-item="item">
+          <i-row class="_i-row data-v-42983f95 row">
+            <i-col span="5" i-class="aunt-avatar" class="_i-col data-v-42983f95">
+              <image class="_image data-v-42983f95 avatar-image" src="{{item.careerPicPath}}"></image>
+            </i-col>
+            <i-col span="18" i-class="col-class" offset="1" class="_i-col data-v-42983f95">
+              <view class="_view data-v-42983f95 flex-wrp" style="flex-direction:column;">
+                <view class="_view data-v-42983f95 item-col"><label class="_span data-v-42983f95">
+                    {{item.name}}阿姨 </label>
+                  <i-tag style="margin-left:20rpx" class="_i-tag data-v-42983f95 i-tags" color="yellow">
+                    {{item.wantJob.type}}
+                  </i-tag>
+                </view>
+                <view class="_view data-v-42983f95 item-col"><label class="_span data-v-42983f95 mini-tag">
+                    {{item.age}}岁 </label> <label class="_span data-v-42983f95 mini-tag">
+                    {{item.education}}
+                  </label> <label class="_span data-v-42983f95 mini-tag">
+                    {{item.birthplace}}人 </label> <label class="_span data-v-42983f95">
+                    {{item.workHistorys.length}}年 </label>
+                  <view class="_p data-v-42983f95 price"> ￥<label class="_span data-v-42983f95 orange">
+                      {{item.wantJob.salary}}
+                    </label>元 / 月 </view>
+                </view>
+                <view class="_view data-v-42983f95 item-col">
+                  <i-tag class="_i-tag data-v-42983f95 i-tags" wx:key="num" key="{{num}}" color="blue" type="border" style="margin-right:5px;" wx:for="{{item.ability}}" wx:for-index="num" wx:for-item="tag">
+                    {{tag}}
+                  </i-tag>
+                </view>
+              </view>
+            </i-col>
+            <view class="_view data-v-42983f95 auntBtn"><button bindtap="handleProxy" type="ghost" data-eventid="{{'4-'+index}}" data-comkey="{{$k}}" class="_button data-v-42983f95">联系阿姨</button></view>
+          </i-row>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

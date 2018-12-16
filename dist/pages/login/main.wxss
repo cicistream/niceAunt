@@ -1,0 +1,25 @@
+@import "../../common/vendor.wxss";
+
+.log {
+  position: absolute;
+  font-size: 28rpx;
+  top: 260rpx;
+  left: 0;
+  right: 0;
+}
+.log .title {
+  font-size: 28rpx;
+  margin-left: 60rpx;
+  line-height: 100rpx;
+}
+.log-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  line-height: 60rpx;
+}
+.login {
+  width: 300rpx;
+  height: 300rpx;
+  text-align: center;
+}

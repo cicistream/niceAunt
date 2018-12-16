@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "登录",
+  "usingComponents": {
+    "i-card": "../../../static/dist/card/index",
+    "i-avatar": "../../../static/dist/avatar/index",
+    "i-icon": "../../../static/dist/icon/index"
+  }
+}

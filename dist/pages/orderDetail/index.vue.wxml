@@ -1,0 +1,59 @@
+<template name="2eae9d54">
+  <view class="_div data-v-3a5d4dc2 container" style="background-color:#f8f8f9">
+    <view class="_div data-v-3a5d4dc2 orderDetail">
+      <view class="_view data-v-3a5d4dc2 orderTitle">
+        <view class="_p data-v-3a5d4dc2 boldFont" style="font-size: 16px;">{{order.type}}</view>
+        <view class="_p data-v-3a5d4dc2"><label class="_span data-v-3a5d4dc2 orange" style="font-size: 14px;">{{order.salary}} 元/月</label> <label style="color: #bbbec4" class="_span data-v-3a5d4dc2">(实际收入以签约价格为准)</label></view>
+        <view class="_p data-v-3a5d4dc2"> 发布时间： <label class="_span data-v-3a5d4dc2">
+            <i-icon type="time" style="margin-right:10rpx;" class="_i-icon data-v-3a5d4dc2"></i-icon>
+            {{order.time}}
+          </label></view>
+      </view>
+      <view class="_view data-v-3a5d4dc2 infoBlock">
+        <view class="_p data-v-3a5d4dc2 orderTag"><label class="_span data-v-3a5d4dc2 tag-name">雇主姓名</label>
+          {{order.name}}
+        </view>
+        <view class="_p data-v-3a5d4dc2 orderTag"><label class="_span data-v-3a5d4dc2 tag-name">雇主电话</label>
+          {{order.phoneNum}}
+        </view>
+        <view class="_p data-v-3a5d4dc2 orderTag"><label class="_span data-v-3a5d4dc2 tag-name">订单技能要求</label>
+          <i-tag wx:key="index" key="{{index}}" style="margin-right:10rpx" class="_i-tag data-v-3a5d4dc2 i-tags" wx:for="{{order.ability}}" wx:for-index="index" wx:for-item="tag">
+            {{tag}}
+          </i-tag>
+        </view>
+        <view class="_p data-v-3a5d4dc2 orderTag"><label class="_span data-v-3a5d4dc2 tag-name">订单年龄要求</label>
+          <i-tag wx:key="num" key="{{num}}" style="margin-right:10rpx" class="_i-tag data-v-3a5d4dc2 i-tags" wx:for="{{order.ageRange}}" wx:for-index="num" wx:for-item="tags">
+            {{tags}}
+          </i-tag>
+        </view>
+        <view class="_p data-v-3a5d4dc2 orderTag"><label class="_span data-v-3a5d4dc2 tag-name">订单户籍要求</label>
+          <i-tag wx:key="count" key="{{count}}" style="margin-right:10rpx" class="_i-tag data-v-3a5d4dc2 i-tags" wx:for="{{order.birthplace}}" wx:for-index="count" wx:for-item="tags">
+            {{tags}}
+          </i-tag>
+        </view>
+        <view class="_p data-v-3a5d4dc2 orderTag"><label class="_span data-v-3a5d4dc2 tag-name">订单经验要求</label>
+          <i-tag wx:key="id" key="{{id}}" style="margin-right:10rpx" class="_i-tag data-v-3a5d4dc2 i-tags" wx:for="{{order.seniority}}" wx:for-index="id" wx:for-item="tags">
+            {{tags}}
+          </i-tag>
+        </view>
+        <view class="_p data-v-3a5d4dc2 orderTag"><label class="_span data-v-3a5d4dc2 tag-name">每周休息天数</label>
+          {{order.restDay}}
+        </view>
+        <view class="_p data-v-3a5d4dc2 orderTag"><label class="_span data-v-3a5d4dc2 tag-name">是否住家</label>
+          {{order.isLiveHome ? '住家' : '不住家'}}
+        </view>
+        <view class="_p data-v-3a5d4dc2 orderTag"><label class="_span data-v-3a5d4dc2 tag-name">详细内容</label>
+          {{order.detail}}
+        </view>
+      </view>
+      <view class="_view data-v-3a5d4dc2 detailBlock">
+        <view class="_p data-v-3a5d4dc2 detail-title">
+          <i-icon type="message" class="_i-icon data-v-3a5d4dc2"></i-icon> 地图
+        </view>
+        <view class="_view data-v-3a5d4dc2">
+          <view class="_view data-v-3a5d4dc2 moreInfoBlock"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
